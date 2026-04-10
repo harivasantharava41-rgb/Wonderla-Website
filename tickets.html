@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets - Wonderla</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🎡 Wonderla</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rides.html">Rides</a></li>
+            <li><a href="tickets.html" class="active">Tickets</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="timings.html">Timings</a></li>
+            <li><a href="facilities.html">Facilities</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>🎟️ Book Tickets</h1>
+        <p>Easy online ticket booking!</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>👨 Adult Ticket</h3>
+            <p>Age: 12+ years</p>
+            <p class="price">₹ 1,000</p>
+            <p>All rides included</p>
+            <a href="#booking" class="btn">Book Now</a>
+        </div>
+        <div class="card">
+            <h3>👧 Child Ticket</h3>
+            <p>Age: 3 - 11 years</p>
+            <p class="price">₹ 800</p>
+            <p>Selected rides</p>
+            <a href="#booking" class="btn">Book Now</a>
+        </div>
+        <div class="card">
+            <h3>👴 Senior Citizen</h3>
+            <p>Age: 60+ years</p>
+            <p class="price">₹ 700</p>
+            <p>Special discount</p>
+            <a href="#booking" class="btn">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="section" id="booking">
+        <h2>📋 Booking Form</h2>
+        <div class="form-box">
+            <input type="text"
+                   placeholder="Your Full Name"
+                   class="input-field">
+            <input type="email"
+                   placeholder="Email Address"
+                   class="input-field">
+            <input type="tel"
+                   placeholder="Phone Number"
+                   class="input-field">
+            <input type="date"
+                   class="input-field">
+            <select class="input-field">
+                <option>Select Ticket Type</option>
+                <option>Adult - ₹1000</option>
+                <option>Child - ₹800</option>
+                <option>Senior - ₹700</option>
+            </select>
+            <input type="number"
+                   placeholder="Number of Tickets"
+                   class="input-field">
+            <button class="btn"
+                    onclick="alert('Booking Confirmed!')">
+                Confirm Booking
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2022 Wonderla Website | Developed by
+        A.Harivasanth & M.Karthikeya |
+        Krishna Chaitanya Degree College, Nellore</p>
+    </footer>
+
+</body>
+</html>

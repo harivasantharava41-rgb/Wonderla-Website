@@ -1,0 +1,204 @@
+File name: css/style.css
+(create folder css then file style.css)
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+}
+
+/* Navbar */
+.navbar {
+    background: #1a0030;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #ff6600;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #ff6600;
+    color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1a0030, #3d0060);
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 3px solid #ff6600;
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #ff6600;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, #1a0030, #3d0060);
+    text-align: center;
+    padding: 50px 20px;
+    border-bottom: 3px solid #ff6600;
+}
+
+.page-header h1 {
+    font-size: 40px;
+    color: #ff6600;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+    color: #cccccc;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    background: #ff6600;
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #e65c00;
+}
+
+/* Section */
+.section {
+    padding: 50px 30px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 32px;
+    color: #ff6600;
+    margin-bottom: 16px;
+}
+
+.section p {
+    font-size: 16px;
+    color: #cccccc;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 30px;
+}
+
+.card {
+    background: #1a0030;
+    border: 2px solid #ff6600;
+    border-radius: 10px;
+    padding: 24px;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #ff6600;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #cccccc;
+    margin: 4px 0;
+}
+
+.price {
+    font-size: 20px !important;
+    color: #ff6600 !important;
+    font-weight: bold;
+}
+
+/* Form */
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.input-field {
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid #ff6600;
+    background: #1a0030;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: #ff9933;
+}
+
+/* Footer */
+footer {
+    background: #1a0030;
+    text-align: center;
+    padding: 20px;
+    border-top: 3px solid #ff6600;
+    color: #cccccc;
+    font-size: 13px;
+    margin-top: 40px;
+}

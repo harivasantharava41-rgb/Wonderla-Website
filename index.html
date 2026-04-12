@@ -1,73 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonderla Amusement Park - Bangalore</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderla — Bangalore's #1 Amusement Park</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #ff6600;
+    --orange-dark: #cc4400;
+    --orange-light: #ff9944;
+    --bg: #0a0500;
+    --card: #1a0800;
+    --text: #ffffff;
+    --muted: #cc8844;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10, 5, 0, 0.95);
+    border-bottom: 2px solid var(--orange);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+    color: var(--orange);
+    letter-spacing: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px 60px;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(255,102,0,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(255,153,68,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0500 0%, #150800 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,102,0,0.08), transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity:0.5; }
+    50% { transform: translate(-50%,-50%) scale(1.2); opacity:1; }
+  }
+
+  .hero-badge {
+    background: rgba(255,102,0,0.15);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(60px, 12vw, 120px);
+    line-height: 0.9;
+    color: #fff;
+    letter-spacing: 4px;
+  }
+
+  .hero h1 span { color: var(--orange); }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--muted);
+    margin: 20px 0 36px;
+    max-width: 500px;
+  }
+
+  .hero-btns { display: flex; gap: 16px; }
+
+  .btn-primary {
+    background: var(--orange);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,102,0,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--orange);
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    border: 2px solid var(--orange);
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,102,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 60px;
+  }
+
+  .stat { text-align: center; }
+  .stat .num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 42px;
+    color: var(--orange);
+    display: block;
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  section { padding: 80px 40px; }
+
+  .section-header { text-align: center; margin-bottom: 50px; }
+
+  .section-tag {
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-header h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 3px;
+  }
+
+  #rides { background: linear-gradient(180deg, #0a0500, #120600); }
+
+  .rides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .ride-card {
+    background: var(--card);
+    border: 1px solid #2a1200;
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ride-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .ride-card:hover::before { transform: scaleX(1); }
+
+  .ride-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(255,102,0,0.2);
+  }
+
+  .ride-icon { font-size: 40px; margin-bottom: 14px; display: block; }
+  .ride-card h3 { font-size: 18px; font-weight: 800; color: var(--orange-light); margin-bottom: 8px; }
+  .ride-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+
+  .ride-badge {
+    display: inline-block;
+    background: rgba(255,102,0,0.15);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  #tickets { background: #0a0500; }
+
+  .tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 50px;
+  }
+
+  .ticket-card {
+    background: var(--card);
+    border: 2px solid #2a1200;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .ticket-card.featured {
+    border-color: var(--orange);
+    background: linear-gradient(135deg, #1a0800, #2a1000);
+    transform: scale(1.04);
+  }
+
+  .ticket-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .ticket-icon { font-size: 36px; margin-bottom: 12px; }
+  .ticket-type { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .ticket-price { font-family: 'Bebas Neue', cursive; font-size: 52px; color: var(--orange); line-height: 1; margin-bottom: 6px; }
+  .ticket-price span { font-size: 22px; }
+  .ticket-age { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .ticket-features { list-style: none; margin-bottom: 24px; }
+  .ticket-features li { font-size: 13px; color: #ccc; padding: 5px 0; border-bottom: 1px solid #2a1200; }
+  .ticket-features li::before { content: '✓ '; color: var(--orange); font-weight: 700; }
+
+  .booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid #2a1200;
+    border-radius: 12px;
+    padding: 36px;
+  }
+
+  .booking-form h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+    color: var(--orange);
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+
+  .form-input {
+    background: #0a0500;
+    border: 1px solid #2a1200;
+    border-radius: 6px;
+    padding: 12px 14px;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+
+  .form-input:focus { border-color: var(--orange); }
+  .form-full { grid-column: 1 / -1; }
+
+  #location { background: linear-gradient(180deg, #0a0500, #120600); }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .location-card {
+    background: var(--card);
+    border: 1px solid #2a1200;
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: all 0.3s;
+  }
+
+  .location-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .location-card .l-icon { font-size: 32px; margin-bottom: 14px; }
+  .location-card h3 { font-size: 16px; font-weight: 800; color: var(--orange-light); margin-bottom: 10px; }
+  .location-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+  #timings { background: #0a0500; }
+
+  .timings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .timing-card {
+    background: var(--card);
+    border: 1px solid #2a1200;
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .timing-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .timing-card .t-icon { font-size: 32px; margin-bottom: 10px; }
+  .timing-card h3 { font-size: 15px; font-weight: 800; color: var(--orange-light); margin-bottom: 8px; }
+  .timing-card .time { font-family: 'Bebas Neue', cursive; font-size: 28px; color: var(--orange); letter-spacing: 2px; margin-bottom: 4px; }
+  .timing-card p { font-size: 12px; color: var(--muted); }
+
+  #facilities { background: linear-gradient(180deg, #0a0500, #120600); }
+
+  .facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .facility-card {
+    background: var(--card);
+    border: 1px solid #2a1200;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .facility-card:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(255,102,0,0.15); }
+  .facility-card .f-icon { font-size: 32px; margin-bottom: 10px; }
+  .facility-card h3 { font-size: 15px; font-weight: 800; color: var(--orange-light); margin-bottom: 8px; }
+  .facility-card p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  footer {
+    background: #050200;
+    border-top: 2px solid var(--orange);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 36px; color: var(--orange); letter-spacing: 3px; margin-bottom: 12px; }
+  footer p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+  footer a { color: var(--orange); text-decoration: none; }
+
+  .scroll-top {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background: var(--orange);
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(255,102,0,0.4);
+  }
+
+  .scroll-top:hover { background: var(--orange-dark); transform: translateY(-3px); }
+
+  .alert {
+    display: none;
+    background: rgba(255,102,0,0.15);
+    border: 1px solid var(--orange);
+    color: var(--orange-light);
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin-top: 14px;
+    text-align: center;
+    font-weight: 700;
+  }
+</style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">🎡 Wonderla</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="rides.html">Rides</a></li>
-            <li><a href="tickets.html">Tickets</a></li>
-            <li><a href="location.html">Location</a></li>
-            <li><a href="timings.html">Timings</a></li>
-            <li><a href="facilities.html">Facilities</a></li>
-        </ul>
-    </nav>
+<nav>
+  <div class="nav-logo">🎡 Wonderla</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#rides">Rides</a></li>
+    <li><a href="#tickets">Tickets</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#timings">Timings</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+  </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>🎡 Welcome to Wonderla</h1>
-        <p>Bangalore's Most Exciting Amusement Park!</p>
-        <p>Located on Mysore Road, Bangalore</p>
-        <a href="tickets.html" class="btn">Book Tickets Now</a>
+<section id="home" class="hero">
+  <div class="hero-badge">🎡 Bangalore's #1 Amusement Park</div>
+  <h1>WONDER<span>LA</span></h1>
+  <p>Experience the thrill of 50+ rides, water attractions and endless entertainment on Mysore Road, Bangalore!</p>
+  <div class="hero-btns">
+    <a href="#tickets" class="btn-primary">🎟️ Book Tickets</a>
+    <a href="#rides" class="btn-outline">🎢 Explore Rides</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="num">50+</span><span class="lbl">Rides</span></div>
+    <div class="stat"><span class="num">1M+</span><span class="lbl">Visitors</span></div>
+    <div class="stat"><span class="num">28KM</span><span class="lbl">From City</span></div>
+    <div class="stat"><span class="num">2002</span><span class="lbl">Est. Year</span></div>
+  </div>
+</section>
+
+<section id="rides">
+  <div class="section-header">
+    <span class="section-tag">🎢 Attractions</span>
+    <h2>OUR RIDES</h2>
+  </div>
+  <div class="rides-grid">
+    <div class="ride-card"><span class="ride-icon">🌊</span><h3>Wave Pool</h3><p>Experience giant ocean waves in our massive wave pool. Perfect for families!</p><span class="ride-badge">All Ages</span></div>
+    <div class="ride-card"><span class="ride-icon">🎢</span><h3>Roller Coaster</h3><p>The ultimate thrill ride with 360° loops and high speed drops!</p><span class="ride-badge">12+ Years</span></div>
+    <div class="ride-card"><span class="ride-icon">💦</span><h3>Water Slides</h3><p>Zoom down our thrilling water slides at high speed!</p><span class="ride-badge">8+ Years</span></div>
+    <div class="ride-card"><span class="ride-icon">🎠</span><h3>Merry Go Round</h3><p>Classic fun ride for the little ones with colorful horses!</p><span class="ride-badge">All Ages</span></div>
+    <div class="ride-card"><span class="ride-icon">🎯</span><h3>Bumper Cars</h3><p>Crash, spin and laugh in our bumper car arena!</p><span class="ride-badge">10+ Years</span></div>
+    <div class="ride-card"><span class="ride-icon">🌀</span><h3>Tornado</h3><p>Spin at incredible speeds on this high-octane thrill ride!</p><span class="ride-badge">14+ Years</span></div>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="section-header">
+    <span class="section-tag">🎟️ Pricing</span>
+    <h2>BOOK TICKETS</h2>
+  </div>
+  <div class="tickets-grid">
+    <div class="ticket-card">
+      <div class="ticket-icon">👧</div>
+      <div class="ticket-type">Child</div>
+      <div class="ticket-price"><span>₹</span>800</div>
+      <div class="ticket-age">Age 3–11 Years</div>
+      <ul class="ticket-features"><li>Selected Rides</li><li>Wave Pool Access</li><li>Kids Zone</li></ul>
+      <a href="#booking" class="btn-outline">Book Now</a>
     </div>
-
-    <!-- About Section -->
-    <div class="section">
-        <h2>About Wonderla</h2>
-        <p>Wonderla is one of India's best amusement parks
-        located on Mysore Road, Bangalore. It offers thrilling
-        rides, water attractions, and entertainment for all ages.
-        A place really worth spending your valuable time!</p>
+    <div class="ticket-card featured">
+      <div class="ticket-icon">👨</div>
+      <div class="ticket-type">Adult</div>
+      <div class="ticket-price"><span>₹</span>1000</div>
+      <div class="ticket-age">Age 12+ Years</div>
+      <ul class="ticket-features"><li>All Rides Included</li><li>Wave Pool Access</li><li>All Attractions</li></ul>
+      <a href="#booking" class="btn-primary">Book Now</a>
     </div>
-
-    <!-- Quick Info Cards -->
-    <div class="cards">
-        <div class="card">
-            <h3>🕐 Timings</h3>
-            <p>Monday - Friday: 11AM - 6PM</p>
-            <p>Saturday - Sunday: 11AM - 7PM</p>
-        </div>
-        <div class="card">
-            <h3>🎟️ Tickets</h3>
-            <p>Adults: ₹1000</p>
-            <p>Children: ₹800</p>
-        </div>
-        <div class="card">
-            <h3>📍 Location</h3>
-            <p>Mysore Road,</p>
-            <p>Bangalore - 562109</p>
-        </div>
-        <div class="card">
-            <h3>🎢 Rides</h3>
-            <p>50+ Thrilling Rides</p>
-            <p>Water & Land Rides</p>
-        </div>
+    <div class="ticket-card">
+      <div class="ticket-icon">👴</div>
+      <div class="ticket-type">Senior</div>
+      <div class="ticket-price"><span>₹</span>700</div>
+      <div class="ticket-age">Age 60+ Years</div>
+      <ul class="ticket-features"><li>Selected Rides</li><li>Wave Pool Access</li><li>Special Discount</li></ul>
+      <a href="#booking" class="btn-outline">Book Now</a>
     </div>
+  </div>
+  <div class="booking-form" id="booking">
+    <h3>📋 Book Your Visit</h3>
+    <div class="form-grid">
+      <div class="form-group"><label>Full Name</label><input type="text" class="form-input" placeholder="Your name"></div>
+      <div class="form-group"><label>Email</label><input type="email" class="form-input" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" class="form-input" placeholder="+91 9999999999"></div>
+      <div class="form-group"><label>Visit Date</label><input type="date" class="form-input"></div>
+      <div class="form-group"><label>Ticket Type</label><select class="form-input"><option>Adult — ₹1000</option><option>Child — ₹800</option><option>Senior — ₹700</option></select></div>
+      <div class="form-group"><label>No. of Tickets</label><input type="number" class="form-input" placeholder="1" min="1"></div>
+      <div class="form-group form-full">
+        <button class="btn-primary" style="width:100%;padding:16px;font-size:16px" onclick="document.getElementById('booking-alert').style.display='block'">🎟️ Confirm Booking</button>
+        <div class="alert" id="booking-alert">✅ Booking Confirmed! Tickets sent to your email.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2022 Wonderla Website | Developed by
-        A.Harivasanth & M.Karthikeya |
-        Krishna Chaitanya Degree College, Nellore</p>
-    </footer>
+<section id="location">
+  <div class="section-header"><span class="section-tag">📍 Find Us</span><h2>OUR LOCATION</h2></div>
+  <div class="location-grid">
+    <div class="location-card"><div class="l-icon">📍</div><h3>Address</h3><p>Wonderla Amusement Park<br>28th KM, Mysore Road<br>Bangalore — 562109<br>Karnataka, India</p></div>
+    <div class="location-card"><div class="l-icon">📞</div><h3>Contact Us</h3><p>Phone: 1800-208-8007<br>Email: info@wonderla.com<br>Website: www.wonderla.com<br>Open 7 Days a Week</p></div>
+    <div class="location-card"><div class="l-icon">🚌</div><h3>How to Reach</h3><p>By Bus: KSRTC from Majestic<br>By Car: NH 275 Mysore Road<br>By Train: Bangalore City Rly<br>Distance: 28 KM from City</p></div>
+  </div>
+</section>
+
+<section id="timings">
+  <div class="section-header"><span class="section-tag">🕐 Schedule</span><h2>PARK TIMINGS</h2></div>
+  <div class="timings-grid">
+    <div class="timing-card"><div class="t-icon">📅</div><h3>Weekdays</h3><div class="time">11AM — 6PM</div><p>Monday to Friday</p></div>
+    <div class="timing-card"><div class="t-icon">🎉</div><h3>Weekends</h3><div class="time">11AM — 7PM</div><p>Saturday & Sunday</p></div>
+    <div class="timing-card"><div class="t-icon">🌟</div><h3>Holidays</h3><div class="time">10AM — 8PM</div><p>Public Holidays</p></div>
+    <div class="timing-card"><div class="t-icon">❌</div><h3>Closed On</h3><div class="time">CHECK</div><p>Maintenance Days</p></div>
+  </div>
+</section>
+
+<section id="facilities">
+  <div class="section-header"><span class="section-tag">🏪 Amenities</span><h2>OUR FACILITIES</h2></div>
+  <div class="facilities-grid">
+    <div class="facility-card"><div class="f-icon">🍽️</div><h3>Food Court</h3><p>Multiple restaurants with Indian & International cuisine, snacks and beverages</p></div>
+    <div class="facility-card"><div class="f-icon">🅿️</div><h3>Parking</h3><p>Large parking area<br>Cars: ₹100<br>Bikes: ₹50</p></div>
+    <div class="facility-card"><div class="f-icon">🏨</div><h3>Resort</h3><p>Wonderla Resort nearby with AC rooms and special park packages</p></div>
+    <div class="facility-card"><div class="f-icon">👕</div><h3>Changing Rooms</h3><p>Separate rooms for men & women with locker facility and towels on rent</p></div>
+    <div class="facility-card"><div class="f-icon">🏥</div><h3>First Aid</h3><p>Medical team on duty with first aid center and emergency services</p></div>
+    <div class="facility-card"><div class="f-icon">📸</div><h3>Photography</h3><p>Photo booths and ride photos available. Memories to take home!</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">🎡 WONDERLA</div>
+  <p>28th KM, Mysore Road, Bangalore — 562109 | Phone: 1800-208-8007</p>
+  <p style="margin-top:10px">© 2022 Wonderla Website Project | Developed by A. Harivasanth Arava & M. Karthikeya</p>
+  <p style="margin-top:6px;font-size:11px">BSc Computer Science · Krishna Chaitanya Degree College, Nellore · Vikrama Simhapuri University</p>
+</footer>
+
+<a href="#home" class="scroll-top">↑</a>
 
 </body>
 </html>
